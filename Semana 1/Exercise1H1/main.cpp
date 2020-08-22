@@ -28,7 +28,7 @@ void findMajorNumber(int* myArray, int n) {
 		}
 	}
 
-	cout << "The major number in the array is: " << major 
+	cout << "The major number in the array is: " << major
 		<< " an its position is: " << position << endl;
 }
 
@@ -62,18 +62,53 @@ void bubbleSort(int* myArray, int n) {
 	}
 }
 
+void showAverageNumber(int* myArray, int n) {
+	int sum = 0;
+	for (int i = 0; i < n; i++) {
+		sum += myArray[i];
+	}
+
+	cout << "The average number is: " << double(sum) / n << endl;
+}
+
+void percentageMajorMinorFifty(int* myArray, int n) {
+	int majorCounter = 0;
+	int minorCounter = 0;
+
+	int majorPercentage, minorPercentage;
+
+	for (int i = 0; i < n; i++) {
+		if (myArray[i] <= 50) {
+			minorCounter++;
+		}
+		else {
+			majorCounter++;
+		}
+	}
+
+	majorPercentage = double(majorCounter) * 100 / n;
+	minorPercentage = double(minorCounter) * 100 / n;
+
+	cout << "The percentage of numbers major fifty is: " << majorPercentage << "%" << endl;
+	cout << "The percentage of numbers minor fifty is: " << minorPercentage << "%" << endl;
+
+}
+
 void menu() {
 	cout << "1. Print Values" << endl;
 	cout << "2. Find major number and position" << endl;
 	cout << "3. Find minor number and position" << endl;
 	cout << "4. Execute bubble sort" << endl;
+	cout << "5. Average number" << endl;
+	cout << "6. Show Percentage" << endl;
+
 }
 
 int main() {
 	srand(time(NULL));
 	int option;
 	int n = 10;
-	int* myArray = new int[10];
+	int* myArray = new int[n];
 
 	generateValues(myArray, n);
 
@@ -81,11 +116,13 @@ int main() {
 		menu();
 		cout << "Enter the option: "; cin >> option;
 
-		switch (option){
+		switch (option) {
 		case 1: printValues(myArray, n); break;
 		case 2: findMajorNumber(myArray, n); break;
 		case 3: findMinorNumber(myArray, n); break;
-		case 4: bubbleSort(myArray, n);
+		case 4: bubbleSort(myArray, n); break;
+		case 5: showAverageNumber(myArray, n); break;
+		case 6: percentageMajorMinorFifty(myArray, n);
 		}
 
 		_getch();
